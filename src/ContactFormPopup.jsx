@@ -6,7 +6,8 @@ class ContactFormPopup extends React.Component {
     this.state = {
       name: "",
       email: "",
-      message: ""
+      message: "",
+      formSubmitted: false, // Додано новий стан для відстеження подання форми
     };
   }
 
@@ -19,9 +20,10 @@ class ContactFormPopup extends React.Component {
     const contactData = {
       name: this.state.name,
       email: this.state.email,
-      message: this.state.message
+      message: this.state.message,
     };
     console.log(contactData); // Тут можеш зробити щось зі збереженими даними, наприклад, відправити на сервер або обробити локально
+    this.setState({ formSubmitted: true }); // Оновлення стану після подання форми
   };
 
   render() {
@@ -58,6 +60,8 @@ class ContactFormPopup extends React.Component {
             Submit
           </button>
         </form>
+        {this.state.formSubmitted && <p>Form submitted!</p>}{" "}
+        {/* Відображення повідомлення після подання форми */}
       </div>
     );
   }
